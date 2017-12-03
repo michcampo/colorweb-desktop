@@ -1,17 +1,19 @@
 .container {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: url(../../../assets/background.jpg) no-repeat center fixed;
-  -webkit-background-size: cover; /* pour anciens Chrome et Safari */
-  background-size: cover; /* version standardisée */
-
-  .title {
-    color: white;
-    margin:0;
-    padding:50px 20px;
-  }
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: 40%;
+    left: 30%;
+    right: 35%;
+    bottom: 50%;
+  ///  margin-left: -50px; /* margin is -0.5 * dimension */
+   // margin-top: -25px; 
+  background: #eceff1;
+ 
+  
 
 }
+select{
+  background-color:#eceff1;
+}
+

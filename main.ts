@@ -1,6 +1,7 @@
 import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 
+
 let win, serve;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');

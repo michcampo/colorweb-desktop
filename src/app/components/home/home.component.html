@@ -1,5 +1,50 @@
 <div class="container">
-  <h1 class="title">
-    {{title}}
-  </h1>
+
+
+<h1>Inserisci un nuovo colore</h1>
+<br>
+
+
+
+<h4>Menù inserimento colore</h4>
+<div *ngIf = 'categorieMerceologiche'>  
+    <form #t="ngForm" (ngSubmit)="prendiTb()">  
+<p>
+    <select class="form-control" (change)="cambia($event)">
+            <option selected="selected">
+                    Seleziona una categoria merceologica
+                    </option>
+        <option *ngFor="let value of cmp; let indx = index" [value]="value.name">{{value.name}}</option>
+            </select>
+    <!--input name="group2" type="radio" [id]="value.name" [value]="value.name" ngModel/>
+    <label [for]='value.name'> {{value.name}}</label-->
+</p>
+<button type="submit" class="btn btn-primary active"> Avanti </button>
+    </form>
+</div>
+
+<div *ngIf="sottoCategorie">
+    <form #t="ngForm" (ngSubmit)="prendiSottoCm()">
+
+        <div id='answerform'>
+          
+            <p> Categoria merceologica: {{nometb}}</p>
+            <p>
+                <select class="form-control" (change)="cambia($event)">
+                        <option selected="selected">
+                                Seleziona una sottocategoria merceologica
+                                </option>
+                            <option *ngFor="let value of sottocat ; let indx = index" [value]="value">{{value}}</option>
+                                </select>
+           
+            </p>
+        </div>
+        <div class="modal-footer orange accent-2 right">
+            <button type="button" class="btn btn-primary active" (click)="reset()"> Reset </button>
+            <button type="submit" class="btn btn-primary active"> Avanti </button>
+        </div>
+    </form>
+
+</div>
+
 </div>
