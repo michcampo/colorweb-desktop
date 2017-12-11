@@ -47,4 +47,166 @@
 
 </div>
 
+
+
+ <!--Codice Neutro-->
+
+ <div *ngIf="codiceNeutro">
+    <form #t="ngForm" (ngSubmit)="prendiCodiceNeutro()">
+
+        <div id='answerform'>
+            <p> Tabella: {{nometb}} - Sottocm: {{sottocm}}</p>
+            <p>
+                <select class="form-control" (change)="cambia($event)">
+                        <option selected="selected">
+                                Seleziona un codice neutro
+                                </option>
+                            <option *ngFor="let value of codiceNeutroList ; let indx = index"  [value]="value">{{value}}</option>
+                                </select>
+
+             
+            </p>
+        </div>
+        <div class="modal-footer orange accent-2 right">
+            <button type="button" class=" btn orange darken-3 button" (click)="reset()"> Reset </button>
+            <button type="submit" class=" btn orange darken-3  button"> Avanti </button>
+        </div>
+    </form>
+
+</div>
+ <!--CODICE COLORE-->
+
+ <div *ngIf="codiceColore">
+    <form #t="ngForm" (ngSubmit)="prendiColore(t.value)">
+
+        <div id='answerform'>
+           
+            <p>{{nometb}} - Sottocm:{{sottocm}} - CODICE NEUTRO:{{idMaster}}</p>
+            <p>
+                <select class="form-control" (change)="cambia($event)">
+                            <option selected="selected">
+                                    Seleziona un codice colore
+                                    </option>
+                                <option *ngFor="let value of listaCodici ; let indx = index"  [style.background-color]="value.h" [value]="value.codice">{{value.codice}}</option>
+                                    </select>
+            
+            </p>
+        </div>
+        <div class="modal-footer orange accent-2 right">
+            <button type="button" class=" btn orange darken-3 button" (click)="reset()"> Reset </button>
+            <button type="submit" class=" btn orange darken-3  button"> Avanti </button>
+        </div>
+    </form>
+
+</div>
+
+<!--CONFRONTO-->
+<div *ngIf="mostraConfronto">
+    <form #t="ngForm" (ngSubmit)="prendiDeltaE(t.value)">
+        <p> Tabella: {{nometb}} - Sottocm: {{sottocm}} - CODICENEUTRO: {{idMaster}} - CODICECOLORE: {{codiceCol}} </p>
+        <p> Colore Già Presente: {{rgbString}}, Data Inserimento: {{data}}, Colore: </p>
+        <div class="rettangolino" [style.background-color]="rGb"></div>
+        <div class="input-field col s6">
+            <div class="row">
+                <div class="input-field inline">
+                    R:
+                    <input type="text" class="validate" name="codiceR" [(ngModel)]="codiceR" ngModel>
+
+                </div>
+                <div class="input-field inline">
+                    G:
+                    <input type="text" class="validate" name="codiceG" [(ngModel)]="codiceG" ngModel>
+
+                </div>
+                <div class="input-field inline">
+                    B:
+                    <input type="text" class="validate" name="codiceB" [(ngModel)]="codiceB" ngModel>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer orange accent-2 right">
+            <button *ngIf="mostraConfronto" type="button" class=" btn orange darken-3 button" (click)="indietro()"> Indietro </button>
+            <button *ngIf="mostraConfronto" type="button" class=" btn orange darken-3 button" (click)="reset()"> Ricomincia </button>
+            <button *ngIf="mostraConfronto" type="button" class=" btn orange darken-3 button" (click)="confronta()"> Scan </button>
+            <button *ngIf="mostraConfronto" type="submit" class=" btn orange darken-3 button">Avanti</button>
+        </div>
+    </form>
+
+</div>
+
+
+    <!--MODAL CONFRONTO-->
+    <div *ngIf="confronto">
+                <p> Tabella: {{nometb}} - Sottocm: {{sottocm}} - CODICENEUTRO: {{idMaster}} - CODICECOLORE: {{codiceCol}} </p>
+                <div class="input-field col s6">
+                    <div class="row">
+                        <table>
+                            <tr>
+                                <td><b>Colore già Presente</b></td>
+                                <td>{{rgbString}}</td>
+                                <td>
+                                    <div class="rettangolino" [style.background-color]="rGb"></div>
+                                </td>
+                                <td>{{data}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Colore Scansionato</b></td>
+                                <td> R: {{codiceR}} G: {{codiceG}} B: {{codiceB}}</td>
+                                <td>
+                                    <div class="rettangolino" [style.background-color]="rgbScan"></div>
+                                </td>
+                            </tr>
+                        </table>
+                        <h5>Delta E: {{deltaE}}</h5>
+                        <input type="text" placeholder="note" name="note" [(ngModel)]="note" ngModel>
+                    </div>
+                </div>
+                <h5 style="align-content: center">Vuoi continuare con l'inserimento?</h5>
+            </div>
+        
+            <div class="modal-footer orange accent-2 center">
+                <button *ngIf="confronto" type="button" class=" btn orange darken-3 button" (click)="negativo()"> No </button>
+                <button *ngIf="confronto" type="button" class=" btn orange darken-3 button" (click)="inserimento()">Inserisci</button>
+            </div>
+
+ <!--RGB-->
+
+ <div *ngIf="rgb">
+         <p> Tabella: {{nometb}} - Sottocm: {{sottocm}} - CODICENEUTRO: {{idMaster}} - CODICECOLORE: {{codiceCol}} </p>
+    <div class="input-field col s6">
+        <div class="row">
+            <div class="input-field inline">
+                R:
+                <input type="text" class="validate" name="codiceR" [(ngModel)]="codiceR" ngModel>
+
+            </div>
+            <div class="input-field inline">
+                G:
+                <input type="text" class="validate" name="codiceG" [(ngModel)]="codiceG" ngModel>
+
+            </div>
+            <div class="input-field inline">
+                B:
+                <input type="text" class="validate" name="codiceB" [(ngModel)]="codiceB" ngModel>
+
+            </div>
+            <div class="input-field inline">
+                <div class="rettangolino" [style.background-color]="stringacolore"></div>
+            </div><br>
+            <input type="text" placeholder="note" name="note" [(ngModel)]="note" ngModel>
+
+        </div>
+    </div>
+
+    {{avviso}}
+</div>
+
+
+<div class="modal-footer orange accent-2 right">
+    <button *ngIf="rgb" type="button" class=" btn orange darken-3 button" (click)="indietro()"> Indietro </button>
+    <button *ngIf="rgb" type="button" class=" btn orange darken-3 button" (click)="reset()"> Ricomincia </button>
+    <button *ngIf="rgb" type="button" class=" btn orange darken-3 button" (click)="getColoriDaSensore()"> Scan </button>
+    <button *ngIf="rgb" type="submit" class=" btn orange darken-3 button">Inserisci</button>
+</div>
 </div>
