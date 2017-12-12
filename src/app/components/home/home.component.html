@@ -1,11 +1,103 @@
-<div class="container">
+<div class="container" >
+
+        <div *ngIf="risultatoQualita"  align="center">
+             <h2>Prima cattura</h2>
+            <div  align="center" class="rettangolo"[style.background-color]="primoScan"></div>
+            <h2>Seconda cattura:</h2>
+            <div  class="rettangolo" [style.background-color]="secondoScan"></div>
+            <h1>DeltaE: {{qualita}}</h1>
+      
+            </div>
+    
+       <div *ngIf="controlloQualita">
+        <div id="primoform">
+                <form #t="ngForm" (ngSubmit)="getColori1()">
+                   
+                    <div class="rettangolino" [style.background-color]="rGb"></div>
+                    <div class="input-field col s6">
+                        <div class="row">
+                            <div class="input-field inline">
+                                R:
+                                <input type="text" class="form-control" name="codiceR1" [(ngModel)]="codiceR1" ngModel>
+            
+                            </div>
+                            <div class="input-field inline">
+                                G:
+                                <input type="text" class="form-control" name="codiceG1" [(ngModel)]="codiceG1" ngModel>
+            
+                            </div>
+                            <div class="input-field inline">
+                                B:
+                                <input type="text" class="form-control" name="codiceB1" [(ngModel)]="codiceB1" ngModel>
+            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer orange accent-2 right">
+            
+                 
+                        <button  type="submit" class="btn btn-primary active">Scan</button>
+                    </div>
+                </form>
+                <div id="secondoform">
+                        <form #t="ngForm" (ngSubmit)="getColori2()">
+                           
+                            <div class="rettangolino" [style.background-color]="rGb"></div>
+                            <div class="input-field col s6">
+                                <div class="row">
+                                    <div class="input-field inline">
+                                        R:
+                                        <input type="text" class="form-control" name="codiceR2" [(ngModel)]="codiceR2" ngModel>
+                    
+                                    </div>
+                                    <div class="input-field inline">
+                                        G:
+                                        <input type="text" class="form-control" name="codiceG2" [(ngModel)]="codiceG2" ngModel>
+                    
+                                    </div>
+                                    <div class="input-field inline">
+                                        B:
+                                        <input type="text" class="form-control" name="codiceB2" [(ngModel)]="codiceB2" ngModel>
+                    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer orange accent-2 right">
+                         
+                        
+            
+                                <button type="submit" class="btn btn-primary active">Scan</button>
+                            </div>
+                        </form>
+            </div>
+            <form #t="ngForm" (ngSubmit)="quality()">
+                    
+            <button type="button" class="btn btn-primary active">Reset</button>
+            <button type="submit" class="btn btn-primary active">Avanti</button>
+        </form>
+    </div>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="container" *ngIf="nuovoColore">
 
 
 <h1>Inserisci un nuovo colore</h1>
 <br>
 
 
-
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value)" class="ui form" id="form">
+    
 <h4>Menù inserimento colore</h4>
 <div *ngIf = 'categorieMerceologiche'>  
     <form #t="ngForm" (ngSubmit)="prendiTb()">  
@@ -68,8 +160,8 @@
             </p>
         </div>
         <div class="modal-footer orange accent-2 right">
-            <button type="button" class=" btn orange darken-3 button" (click)="reset()"> Reset </button>
-            <button type="submit" class=" btn orange darken-3  button"> Avanti </button>
+            <button type="button" class="btn btn-primary active" (click)="reset()"> Reset </button>
+            <button type="submit" class="btn btn-primary active"> Avanti </button>
         </div>
     </form>
 
@@ -93,8 +185,8 @@
             </p>
         </div>
         <div class="modal-footer orange accent-2 right">
-            <button type="button" class=" btn orange darken-3 button" (click)="reset()"> Reset </button>
-            <button type="submit" class=" btn orange darken-3  button"> Avanti </button>
+            <button type="button" class="btn btn-primary active" (click)="reset()"> Reset </button>
+            <button type="submit" class="btn btn-primary active"> Avanti </button>
         </div>
     </form>
 
@@ -110,26 +202,26 @@
             <div class="row">
                 <div class="input-field inline">
                     R:
-                    <input type="text" class="validate" name="codiceR" [(ngModel)]="codiceR" ngModel>
+                    <input type="text" class="form-control" name="codiceR" [(ngModel)]="codiceR" ngModel>
 
                 </div>
                 <div class="input-field inline">
                     G:
-                    <input type="text" class="validate" name="codiceG" [(ngModel)]="codiceG" ngModel>
+                    <input type="text" class="form-control" name="codiceG" [(ngModel)]="codiceG" ngModel>
 
                 </div>
                 <div class="input-field inline">
                     B:
-                    <input type="text" class="validate" name="codiceB" [(ngModel)]="codiceB" ngModel>
+                    <input type="text" class="form-control" name="codiceB" [(ngModel)]="codiceB" ngModel>
 
                 </div>
             </div>
         </div>
         <div class="modal-footer orange accent-2 right">
-            <button *ngIf="mostraConfronto" type="button" class=" btn orange darken-3 button" (click)="indietro()"> Indietro </button>
-            <button *ngIf="mostraConfronto" type="button" class=" btn orange darken-3 button" (click)="reset()"> Ricomincia </button>
-            <button *ngIf="mostraConfronto" type="button" class=" btn orange darken-3 button" (click)="confronta()"> Scan </button>
-            <button *ngIf="mostraConfronto" type="submit" class=" btn orange darken-3 button">Avanti</button>
+            <button *ngIf="mostraConfronto" type="button" class="btn btn-primary active" (click)="indietro()"> Indietro </button>
+            <button *ngIf="mostraConfronto" type="button" class="btn btn-primary active" (click)="reset()"> Ricomincia </button>
+            <button *ngIf="mostraConfronto" type="button" class="btn btn-primary active" (click)="confronta()"> Scan </button>
+            <button *ngIf="mostraConfronto" type="submit" class="btn btn-primary active">Avanti</button>
         </div>
     </form>
 
@@ -146,7 +238,7 @@
                                 <td><b>Colore già Presente</b></td>
                                 <td>{{rgbString}}</td>
                                 <td>
-                                    <div class="rettangolino" [style.background-color]="rGb"></div>
+                                        <div class="rettangolino" [style.background-color]="rGb"></div>
                                 </td>
                                 <td>{{data}}</td>
                             </tr>
@@ -159,15 +251,15 @@
                             </tr>
                         </table>
                         <h5>Delta E: {{deltaE}}</h5>
-                        <input type="text" placeholder="note" name="note" [(ngModel)]="note" ngModel>
+                        <input type="text" class="form-control" placeholder="note" name="note" [(ngModel)]="note" ngModel>
                     </div>
                 </div>
                 <h5 style="align-content: center">Vuoi continuare con l'inserimento?</h5>
             </div>
         
             <div class="modal-footer orange accent-2 center">
-                <button *ngIf="confronto" type="button" class=" btn orange darken-3 button" (click)="negativo()"> No </button>
-                <button *ngIf="confronto" type="button" class=" btn orange darken-3 button" (click)="inserimento()">Inserisci</button>
+                <button *ngIf="confronto" type="button" class="btn btn-primary active" (click)="negativo()"> No </button>
+                <button *ngIf="confronto" type="button" class="btn btn-primary active" (click)="inserimento()">Inserisci</button>
             </div>
 
  <!--RGB-->
@@ -178,23 +270,23 @@
         <div class="row">
             <div class="input-field inline">
                 R:
-                <input type="text" class="validate" name="codiceR" [(ngModel)]="codiceR" ngModel>
+                <input type="text" class="form-control" name="codiceR" [(ngModel)]="codiceR" ngModel>
 
             </div>
             <div class="input-field inline">
                 G:
-                <input type="text" class="validate" name="codiceG" [(ngModel)]="codiceG" ngModel>
+                <input type="text" class="form-control" name="codiceG" [(ngModel)]="codiceG" ngModel>
 
             </div>
             <div class="input-field inline">
                 B:
-                <input type="text" class="validate" name="codiceB" [(ngModel)]="codiceB" ngModel>
+                <input type="text" class="form-control" name="codiceB" [(ngModel)]="codiceB" ngModel>
 
             </div>
             <div class="input-field inline">
                 <div class="rettangolino" [style.background-color]="stringacolore"></div>
-            </div><br>
-            <input type="text" placeholder="note" name="note" [(ngModel)]="note" ngModel>
+            </div>
+            <input type="text" class="form-control" placeholder="note" name="note" [(ngModel)]="note" ngModel>
 
         </div>
     </div>
@@ -204,9 +296,10 @@
 
 
 <div class="modal-footer orange accent-2 right">
-    <button *ngIf="rgb" type="button" class=" btn orange darken-3 button" (click)="indietro()"> Indietro </button>
-    <button *ngIf="rgb" type="button" class=" btn orange darken-3 button" (click)="reset()"> Ricomincia </button>
-    <button *ngIf="rgb" type="button" class=" btn orange darken-3 button" (click)="getColoriDaSensore()"> Scan </button>
-    <button *ngIf="rgb" type="submit" class=" btn orange darken-3 button">Inserisci</button>
+    <button *ngIf="rgb" type="button" class="btn btn-primary active" (click)="indietro()"> Indietro </button>
+    <button *ngIf="rgb" type="button" class="btn btn-primary active" (click)="reset()"> Ricomincia </button>
+    <button *ngIf="rgb" type="button" class="btn btn-primary active" (click)="getColoriDaSensore()"> Scan </button>
+    <button *ngIf="rgb" type="submit" class="btn btn-primary active">Inserisci</button>
 </div>
+</form>
 </div>
