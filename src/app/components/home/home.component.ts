@@ -10,8 +10,9 @@ import { NgForm } from "@angular/forms/public_api";
 })
 export class HomeComponent implements OnInit {
   title = `Inserimento nuovo colore`;
-  controlloQualita = true;
+  controlloQualita = false;
   risultatoQualita = false;
+  homepage = true;
   nuovoColore = false;
   primoScan;
   secondoScan;
@@ -70,7 +71,26 @@ public cmp = []
      });
    
    }
-
+inserisci(){
+  
+  this.homepage = !this.homepage;
+  this.nuovoColore = !this.nuovoColore;
+}
+checkQuality(){
+  
+  this.homepage = !this.homepage;
+  this.controlloQualita = !this.nuovoColore;
+}
+checkQualityDue(){
+  
+  this.homepage = !this.homepage;
+  this.risultatoQualita = !this.risultatoQualita;
+}
+checkQualityTre(){
+  
+  this.controlloQualita = !this.controlloQualita;
+  this.risultatoQualita = !this.risultatoQualita;
+}
 prendiTb(){
  this.categorieMerceologiche = false;
 console.log(this.nometb);

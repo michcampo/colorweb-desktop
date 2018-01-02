@@ -1,12 +1,20 @@
 <div class="container" >
+  
+    <div *ngIf="homepage"  align="center">
 
+<h1>Benvenuto nell'applicazione desktop di Unicam-Tod's Progetto Colori!</h1><br><br>
+<img src="logo.png" title="Prodotto da Università di Camerino" height="300" width="720" alt="unicam" id="unicam" />
+    <br> <br>  <button type="button" class="btn btn-primary active" (click)="inserisci()" ><b>Inserisci colore</b></button>
+     <button type="button" class="btn btn-primary active" (click)="checkQuality()" ><b>Controllo qualità</b></button>
+    </div>
         <div *ngIf="risultatoQualita"  align="center">
              <h2>Prima cattura</h2>
             <div  align="center" class="rettangolo"[style.background-color]="primoScan"></div>
             <h2>Seconda cattura:</h2>
             <div  class="rettangolo" [style.background-color]="secondoScan"></div>
             <h1>DeltaE: {{qualita}}</h1>
-      
+            <button type="button" class="btn btn-primary active" (click)="checkQualityTre()" >Indietro</button>
+            <button type="button" class="btn btn-primary active" (click)="checkQualityDue()" >Menù principale</button>
             </div>
     
        <div *ngIf="controlloQualita">
@@ -112,6 +120,7 @@
     <label [for]='value.name'> {{value.name}}</label-->
 </p>
 <button type="submit" class="btn btn-primary active"> Avanti </button>
+<button type="button" class="btn btn-primary active" (click)="inserisci()" >Menu principale</button>
     </form>
 </div>
 
