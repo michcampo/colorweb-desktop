@@ -79,7 +79,7 @@ inserisci(){
 checkQuality(){
   
   this.homepage = !this.homepage;
-  this.controlloQualita = !this.nuovoColore;
+  this.controlloQualita = !this.controlloQualita;
 }
 checkQualityDue(){
   
@@ -464,8 +464,14 @@ getColori1(){
 quality(){
   var array1 =[this.codiceR1, this.codiceG1,  this.codiceB1];
   var array2 =[this.codiceR2, this.codiceG2,  this.codiceB2];
-  this.qualita = this.getDeltaE(array1, array2);
+  var q = this.getDeltaE(array1, array2);
+  if(!isNaN(q)){
+    this.qualita = "DeltaE: " + q;
 
+  }else{
+    this.qualita = "NON SONO STATI INSERITI DUE COLORI, RITORNA INDIETRO"
+  }
+  
 this.primoScan = "rgb("+ Math.round(this.codiceR1) + ", " +  Math.round(this.codiceG1) + "," +  Math.round(this.codiceB1) + ")";
 this.secondoScan = "rgb("+ Math.round(this.codiceR2) + ", " +  Math.round(this.codiceG2) + "," +  Math.round(this.codiceB2) + ")";
 this.risultatoQualita = true;

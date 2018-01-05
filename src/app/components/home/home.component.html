@@ -1,9 +1,9 @@
 <div class="container" >
   
-    <div *ngIf="homepage"  align="center">
+ <div *ngIf="homepage"  align="center">
 
-<h1>Benvenuto nell'applicazione desktop di Unicam-Tod's Progetto Colori!</h1><br><br>
-<img src="logo.png" title="Prodotto da Università di Camerino" height="300" width="720" alt="unicam" id="unicam" />
+  <h1>Benvenuto nell'applicazione desktop di Unicam-Tod's Progetto Colori!</h1><br><br>
+ <img src="logo.png" title="Prodotto da Università di Camerino" height="300" width="720" alt="unicam" id="unicam" />
     <br> <br>  <button type="button" class="btn btn-primary active" (click)="inserisci()" ><b>Inserisci colore</b></button>
      <button type="button" class="btn btn-primary active" (click)="checkQuality()" ><b>Controllo qualità</b></button>
     </div>
@@ -20,10 +20,11 @@
        <div *ngIf="controlloQualita">
         <div id="primoform">
                 <form #t="ngForm" (ngSubmit)="getColori1()">
-                   
+                     
                     <div class="rettangolino" [style.background-color]="rGb"></div>
                     <div class="input-field col s6">
                         <div class="row">
+                                <h2>Inserisci il primo colore</h2>
                             <div class="input-field inline">
                                 R:
                                 <input type="text" class="form-control" name="codiceR1" [(ngModel)]="codiceR1" ngModel>
@@ -48,11 +49,13 @@
                     </div>
                 </form>
                 <div id="secondoform">
+                   
                         <form #t="ngForm" (ngSubmit)="getColori2()">
                            
                             <div class="rettangolino" [style.background-color]="rGb"></div>
                             <div class="input-field col s6">
                                 <div class="row">
+                                        <h2>Inserisci il secondo colore</h2>
                                     <div class="input-field inline">
                                         R:
                                         <input type="text" class="form-control" name="codiceR2" [(ngModel)]="codiceR2" ngModel>
@@ -78,9 +81,9 @@
                             </div>
                         </form>
             </div>
-            <form #t="ngForm" (ngSubmit)="quality()">
+            <form  #t="ngForm" (ngSubmit)="quality()">
                     
-            <button type="button" class="btn btn-primary active">Reset</button>
+            <button type="button" class="btn btn-primary active" (click)="checkQuality()" >Reset</button>
             <button type="submit" class="btn btn-primary active">Avanti</button>
         </form>
     </div>
